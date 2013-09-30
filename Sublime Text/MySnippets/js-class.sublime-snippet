@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+// Class 
+// ----------------------
+var ${1:Class} = function($2) {
+    this.${3:var = 0};
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>class</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.js</scope>
+    <description>JavaScript class</description>
+</snippet>

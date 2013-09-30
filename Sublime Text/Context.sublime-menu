@@ -1,0 +1,6 @@
+[
+    { "caption": "-" },
+    { "command": "p4_edit", "caption": "P4 Edit" },
+    { "command": "p4_revert", "caption": "P4 Revert" },
+    { "command": "p4_add", "caption": "P4 Add" }
+]

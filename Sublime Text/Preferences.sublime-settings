@@ -1,0 +1,21 @@
+{
+	"bold_folder_labels": false,
+	"color_scheme": "Packages/User/PlasticCodeWrap-Jare.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Source Code Pro Semibold",
+	"font_options":
+	[
+		"directwrite"
+	],
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"open_files_in_new_window": true,
+	"rulers":
+	[
+	],
+	"scroll_speed": 30.0,
+	"translate_tabs_to_spaces": true
+}
