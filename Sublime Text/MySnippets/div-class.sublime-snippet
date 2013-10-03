@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+<div class="$1">$2</div>
+]]></content>
+    <tabTrigger>divc</tabTrigger>
+    <scope>text.html</scope>
+    <description>div with class attribute</description>
+</snippet>
