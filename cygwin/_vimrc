@@ -1,0 +1,17 @@
+set gfn=Droid_Sans_Mono:h10:cANSI
+set langmenu=en_US.UTF-8
+set ve=block
+set ignorecase
+set smartcase
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set nu
+
+set switchbuf=usetab,newtab
+set showtabline=2
+
+"let g:miniBufExplMapCTabSwitchBufs = 1
+
+au GUIEnter * simalt ~x
+
