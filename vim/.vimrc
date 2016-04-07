@@ -2,6 +2,8 @@ set nocompatible
 
 " ------------------
 " Vundle stuff
+" One-time manual install:
+"   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
