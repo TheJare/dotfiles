@@ -45,6 +45,28 @@ set ruler laststatus=2 showcmd showmode
 set switchbuf=usetab,newtab
 "set showtabline=2
 
+let mapleader = "\<Space>"
+" create horizontal and vertical splits
+nnoremap <Leader>w <C-w>v<C-w>l
+nnoremap <Leader>e <C-w>s<C-w>j
+" navigate splits
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+" save, open, etc
+nnoremap <Leader>s :w<CR>
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>c :bd<CR>
+" system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 " CtrlP
 " git clone https://github.com/kien/ctrlp.vim.git ~/.vimrc/bundle/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
