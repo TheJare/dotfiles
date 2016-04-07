@@ -2,8 +2,9 @@ set nocompatible
 
 " ------------------
 " Vundle stuff
-" One-time manual install:
+" Necessary one-time manual bootstrap (if vim complains about this .vimrc):
 "   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"   then start vim and run :PluginInstall command
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
