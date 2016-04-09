@@ -12,6 +12,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'vim-ctrlspace/vim-ctrlspace'
+Plugin 'derekwyatt/vim-scala'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -80,3 +82,15 @@ let g:ctrlp_user_command = 'find %s -type f'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
+" CtrlSpace
+" https://github.com/vim-ctrlspace/vim-ctrlspace
+set showtabline=0
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
+hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=9 ctermbg=NONE
+hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=1 ctermbg=9 term=bold cterm=bold
+if executable("ag")
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
