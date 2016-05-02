@@ -93,5 +93,5 @@ let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=9 ctermbg=NONE
 hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=1 ctermbg=9 term=bold cterm=bold
 if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g "" | tr -d "\r"'
 endif
