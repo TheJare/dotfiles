@@ -51,6 +51,12 @@ set ruler laststatus=2 showcmd showmode
 set switchbuf=usetab,newtab
 "set showtabline=2
 
+" Avoid temp files
+set nobackup
+set nowritebackup
+set noswapfile
+set noundofile
+
 let mapleader = "\<Space>"
 " create horizontal and vertical splits
 nnoremap <Leader>w <C-w>v<C-w>l
