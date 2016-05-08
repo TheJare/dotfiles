@@ -51,7 +51,7 @@ set ruler laststatus=2 showcmd showmode
 set switchbuf=usetab,newtab
 "set showtabline=2
 
-" Avoid temp files
+"Avoid temp files
 set nobackup
 set nowritebackup
 set noswapfile
@@ -96,8 +96,23 @@ let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
-hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=9 ctermbg=NONE
-hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=1 ctermbg=9 term=bold cterm=bold
+hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=yellow ctermbg=black
+hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=black ctermbg=yellow term=bold cterm=bold
 if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g "" | tr -d "\r"'
+    if executable("tr")
+        let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g "" | tr -d "\r"'
+    else
+        let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+    endif
+endif
+
+if has('gui_running')
+  set guioptions-=T  " no toolbar
+  colorscheme industry
+  "set lines=60 columns=108 linespace=0
+  if has('gui_win32')
+    set guifont=DejaVu_Sans_Mono:h9:cANSI
+  else
+    set guifont=DejaVu\ Sans\ Mono\ 9
+  endif
 endif
