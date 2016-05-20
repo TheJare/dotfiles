@@ -12,9 +12,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-ctrlspace/vim-ctrlspace'
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'derekwyatt/vim-scala'
+" Plugin 'Shougo/unite.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -58,6 +59,7 @@ set noswapfile
 set noundofile
 
 let mapleader = "\<Space>"
+nnoremap <Leader>q :qa<CR>
 " create horizontal and vertical splits
 nnoremap <Leader>w <C-w>v<C-w>l
 nnoremap <Leader>e <C-w>s<C-w>j
@@ -78,6 +80,13 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+" Use tab and shift-tab to cycle through windows.
+nnoremap <Tab> <C-W>w
+nnoremap <S-Tab> <C-W>W
+nnoremap <Leader><Tab> :tabedit 
+" User Enter to open Unite
+"nnoremap <CR> :Unite buffer file tab<CR>
+nnoremap <CR> :CtrlPBuff<CR>
 
 " CtrlP
 " git clone https://github.com/kien/ctrlp.vim.git ~/.vimrc/bundle/ctrlp.vim
@@ -88,23 +97,27 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = 'find %s -type f'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+if executable("ag")
+    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+    let g:ctrlp_use_caching = 0
+endif
 
 " CtrlSpace
 " https://github.com/vim-ctrlspace/vim-ctrlspace
-set showtabline=0
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
-hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=yellow ctermbg=black
-hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=black ctermbg=yellow term=bold cterm=bold
-if executable("ag")
-    if executable("tr")
-        let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g "" | tr -d "\r"'
-    else
-        let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-    endif
-endif
+" set showtabline=0
+" let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+" let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+" let g:CtrlSpaceSaveWorkspaceOnExit = 1
+" let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
+" hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=yellow ctermbg=black
+" hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=black ctermbg=yellow term=bold cterm=bold
+" if executable("ag")
+"     if executable("tr")
+"         let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g "" | tr -d "\r"'
+"     else
+"         let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+"     endif
+" endif 
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
@@ -116,3 +129,43 @@ if has('gui_running')
     set guifont=DejaVu\ Sans\ Mono\ 9
   endif
 endif
+
+" Cursor line highlight, only on active window
+hi CursorLine cterm=NONE ctermbg=234 guibg=#101010
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+
+" Status line with color based on insert or readonly modes
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+" default the statusline to green when entering Vim
+hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+" Formats the statusline
+set statusline=%F\                           " file name
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%y      "filetype
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+
+set statusline+=\ %=                  " align left
+set statusline+=\|\ L\ %l/%L            " line X of Y [percent of file]
+set statusline+=\ C\ %c              " current column
+set statusline+=\|\ Buf:%n              " Buffer number
+set statusline+=\ Tab:%{tabpagenr()}  " Tab number
