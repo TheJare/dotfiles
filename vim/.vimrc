@@ -105,7 +105,7 @@ if executable("ag")
     if executable("tr") && !empty($CYGWIN)
         let g:ctrlp_user_command = 'ag -l --nocolor -g "" $(cygpath -w %s) | tr -d "\r"'
     else
-        let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+        let g:ctrlp_user_command = 'ag --hidden -l --nocolor -g "" %s'
     endif
     let g:ctrlp_use_caching = 0
 endif
