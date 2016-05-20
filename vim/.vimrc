@@ -12,10 +12,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
-" Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Plugin 'vim-ctrlspace/vim-ctrlspace'
-Plugin 'derekwyatt/vim-scala'
 " Plugin 'Shougo/unite.vim'
+Plugin 'scrooloose/syntastic'
+
+Plugin 'derekwyatt/vim-scala'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -40,6 +44,7 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set smartindent
+set virtualedit=onemore
 
 syntax on
 filetype indent on
@@ -89,7 +94,6 @@ nnoremap <Leader><Tab> :tabedit
 nnoremap <CR> :CtrlPBuff<CR>
 
 " CtrlP
-" git clone https://github.com/kien/ctrlp.vim.git ~/.vimrc/bundle/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -98,7 +102,11 @@ let g:ctrlp_user_command = 'find %s -type f'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 if executable("ag")
-    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+    if executable("tr") && !empty($CYGWIN)
+        let g:ctrlp_user_command = 'ag -l --nocolor -g "" $(cygpath -w %s) | tr -d "\r"'
+    else
+        let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+    endif
     let g:ctrlp_use_caching = 0
 endif
 
@@ -118,6 +126,12 @@ endif
 "         let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 "     endif
 " endif 
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
@@ -163,6 +177,10 @@ set statusline+=%y      "filetype
 set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
+
+set statusline+=\ \|%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*\|
 
 set statusline+=\ %=                  " align left
 set statusline+=\|\ L\ %l/%L            " line X of Y [percent of file]
