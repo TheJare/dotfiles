@@ -11,6 +11,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'sickill/vim-monokai'
+Plugin 'tomasr/molokai'
+
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'vim-ctrlspace/vim-ctrlspace'
@@ -133,9 +137,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"colorscheme solarized
+colorscheme molokai
 if has('gui_running')
   set guioptions-=T  " no toolbar
-  colorscheme industry
+  "colorscheme industry
   "set lines=60 columns=108 linespace=0
   if has('gui_win32')
     set guifont=DejaVu_Sans_Mono:h9:cANSI
