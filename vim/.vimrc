@@ -67,6 +67,7 @@ set nowritebackup
 set noswapfile
 set noundofile
 
+set mouse=a
 let mapleader = "\<Space>"
 nnoremap <Leader>q :qa<CR>
 " create horizontal and vertical splits
