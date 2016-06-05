@@ -11,7 +11,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 "Plugin 'sickill/vim-monokai'
 Plugin 'tomasr/molokai'
 
@@ -21,8 +21,9 @@ Plugin 'scrooloose/nerdtree'
 " Plugin 'Shougo/unite.vim'
 Plugin 'scrooloose/syntastic'
 
-Plugin 'derekwyatt/vim-scala'
-Plugin 'rust-lang/rust.vim'
+"Plugin 'derekwyatt/vim-scala'
+"Plugin 'rust-lang/rust.vim'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'racer-rust/vim-racer'
 
 " All of your Plugins must be added before the following line
@@ -94,6 +95,7 @@ vmap <Leader>P "+P
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
 nnoremap <Leader><Tab> :tabedit 
+nnoremap <Leader>t gt
 " User Enter to open Unite
 "nnoremap <CR> :Unite buffer file tab<CR>
 nnoremap <CR> :CtrlPBuff<CR>
