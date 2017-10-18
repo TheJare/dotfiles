@@ -24,7 +24,7 @@ Plugin 'scrooloose/syntastic'
 "Plugin 'derekwyatt/vim-scala'
 "Plugin 'rust-lang/rust.vim'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'racer-rust/vim-racer'
+"Plugin 'racer-rust/vim-racer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -87,8 +87,8 @@ nnoremap <Leader>c :bd<CR>
 " system clipboard
 vmap <Leader>y "+y
 vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
+"nmap <Leader>Y "+Y
+"nmap <Leader>D "+D
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 " Use tab and shift-tab to cycle through windows.
@@ -147,7 +147,8 @@ if has('gui_running')
   "colorscheme industry
   "set lines=60 columns=108 linespace=0
   if has('gui_win32')
-    set guifont=DejaVu_Sans_Mono:h9:cANSI
+    "set guifont=DejaVu_Sans_Mono:h9:cANSI
+    set guifont=Consolas:h9:cANSI
   else
     set guifont=DejaVu\ Sans\ Mono\ 9
   endif
@@ -165,18 +166,26 @@ augroup END
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
     hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
-  elseif a:mode == 'r'
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
   else
-    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+    hi statusline guibg=Green ctermfg=1 guifg=Black ctermbg=0
   endif
 endfunction
 
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+function! ReadonlyStatuslineColor()
+  if &readonly
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    call InsertStatuslineColor(v:insertmode)
+  endif
+endfunction
 
-" default the statusline to green when entering Vim
-hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+augroup StatusLine
+    au!
+    au InsertEnter * call InsertStatuslineColor(v:insertmode)
+    au InsertLeave * call InsertStatuslineColor('')
+    "call InsertStatuslineColor('')
+    au VimEnter,WinEnter,BufEnter * call ReadonlyStatuslineColor()
+augroup END
 
 " Formats the statusline
 set statusline=%F\                           " file name
