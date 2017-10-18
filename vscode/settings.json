@@ -1,0 +1,82 @@
+// Place your settings in this file to overwrite the default settings
+{
+	"editor.fontFamily": "Hack",
+	"editor.fontSize": 13,
+	"editor.wordWrap": "on",
+	"editor.minimap.enabled": true,
+	"editor.dragAndDrop": false,
+	"editor.autoIndent": true,
+	"editor.smoothScrolling": true,
+	"window.zoomLevel": 0,
+	"window.newWindowDimensions": "inherit",
+	"window.restoreWindows": "all",
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.DS_Store": true,
+		"**/*.dll": true
+	},
+	"search.exclude": {
+		"**/.git": true,
+		"**/.sass-cache": true,
+		"**/node_modules": true,
+		"**/bower_components": true
+	},
+	"terminal.integrated.shell.windows": "C:\\WINDOWS\\Sysnative\\cmd.exe",
+	"terminal.integrated.fontSize": 12,
+	"files.eol": "\n",
+	"workbench.colorTheme": "Monokai",
+	"workbench.iconTheme": "vs-seti",
+	"[go]": {
+		"editor.formatOnSave": true
+	},
+	"rust.showOutput": false,
+	"C_Cpp.intelliSenseEngine": "Default",
+	"workbench.editor.closeOnFileDelete": false,
+	"search.useIgnoreFilesByDefault": true,
+	"workbench.editor.revealIfOpen": true,
+
+	"code-runner.executorMap": {
+		"javascript": "node",
+		"java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+		"c": "cd $dir && gcc $fileName -g -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+		"cpp": "cd $dir && g++ -std=c++17 $fileName -g -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+		"objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+		"php": "php",
+		"python": "python",
+		"perl": "perl",
+		"ruby": "ruby",
+		"go": "go run",
+		"lua": "lua",
+		"groovy": "groovy",
+		"powershell": "powershell -ExecutionPolicy ByPass -File",
+		"bat": "cmd /c",
+		"shellscript": "bash",
+		"fsharp": "fsi",
+		"csharp": "scriptcs",
+		"vbscript": "cscript //Nologo",
+		"typescript": "ts-node",
+		"coffeescript": "coffee",
+		"scala": "scala",
+		"swift": "swift",
+		"julia": "julia",
+		"crystal": "crystal",
+		"ocaml": "ocaml",
+		"r": "Rscript",
+		"applescript": "osascript",
+		"clojure": "lein exec",
+		"haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+		"rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+		"racket": "racket",
+		"ahk": "autohotkey",
+		"autoit": "autoit3",
+		"kotlin": "cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar"
+	},
+	"git-autoconfig.configList": [
+		{
+			"user.email": "jare@iguanademos.com",
+			"user.name": "Javier Arevalo"
+		}
+	]
+}
