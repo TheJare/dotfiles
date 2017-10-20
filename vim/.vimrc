@@ -14,7 +14,9 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'sickill/vim-monokai'
 Plugin 'tomasr/molokai'
+Plugin 'itchyny/lightline.vim'
 
+Plugin 'tpope/vim-commentary'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'vim-ctrlspace/vim-ctrlspace'
@@ -85,12 +87,12 @@ nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>c :bd<CR>
 " system clipboard
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-"nmap <Leader>Y "+Y
-"nmap <Leader>D "+D
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>Y "+Y
+nnoremap <Leader>D "+D
+nnoremap <Leader>p "+gp
+nnoremap <Leader>P "+gP
 " Use tab and shift-tab to cycle through windows.
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
@@ -117,23 +119,6 @@ if executable("ag")
     let g:ctrlp_use_caching = 0
 endif
 
-" CtrlSpace
-" https://github.com/vim-ctrlspace/vim-ctrlspace
-" set showtabline=0
-" let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-" let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-" let g:CtrlSpaceSaveWorkspaceOnExit = 1
-" let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
-" hi CtrlSpaceNormal guifg=#ffffff guibg=#000000 gui=bold ctermfg=yellow ctermbg=black
-" hi CtrlSpaceSelected guifg=#800000 guibg=#000000 gui=bold ctermfg=black ctermbg=yellow term=bold cterm=bold
-" if executable("ag")
-"     if executable("tr")
-"         let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g "" | tr -d "\r"'
-"     else
-"         let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-"     endif
-" endif 
-
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -145,7 +130,7 @@ colorscheme molokai
 if has('gui_running')
   set guioptions-=T  " no toolbar
   "colorscheme industry
-  "set lines=60 columns=108 linespace=0
+  set lines=50 columns=140 linespace=0
   if has('gui_win32')
     "set guifont=DejaVu_Sans_Mono:h9:cANSI
     set guifont=Consolas:h9:cANSI
@@ -154,54 +139,3 @@ if has('gui_running')
   endif
 endif
 
-" Cursor line highlight, only on active window
-hi CursorLine cterm=NONE ctermbg=234 guibg=#101010
-augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup END
-
-" Status line with color based on insert or readonly modes
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
-  else
-    hi statusline guibg=Green ctermfg=1 guifg=Black ctermbg=0
-  endif
-endfunction
-
-function! ReadonlyStatuslineColor()
-  if &readonly
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
-  else
-    call InsertStatuslineColor(v:insertmode)
-  endif
-endfunction
-
-augroup StatusLine
-    au!
-    au InsertEnter * call InsertStatuslineColor(v:insertmode)
-    au InsertLeave * call InsertStatuslineColor('')
-    "call InsertStatuslineColor('')
-    au VimEnter,WinEnter,BufEnter * call ReadonlyStatuslineColor()
-augroup END
-
-" Formats the statusline
-set statusline=%F\                           " file name
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%y      "filetype
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-
-set statusline+=\ \|%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*\|
-
-set statusline+=\ %=                  " align left
-set statusline+=\|\ L\ %l/%L            " line X of Y [percent of file]
-set statusline+=\ C\ %c              " current column
-set statusline+=\|\ Buf:%n              " Buffer number
-set statusline+=\ Tab:%{tabpagenr()}  " Tab number
