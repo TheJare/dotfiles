@@ -35,6 +35,12 @@ filetype plugin indent on
 " ------------------
 " My stuff
 set bg=dark
+" Windows compatibility
+set term=pcansi
+set t_Co=256
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+
 
 set langmenu=en_US.UTF-8
 set virtualedit=block
