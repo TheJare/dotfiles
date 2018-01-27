@@ -36,11 +36,20 @@ filetype plugin indent on
 " My stuff
 set bg=dark
 " Windows compatibility
-set term=pcansi
-set t_Co=256
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
+if has("win32")
+  set term=pcansi
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+endif
 
+" Half fix for ConEmu on win10. Use -cur_console:p instead
+"if
+"  set t_ku=[A
+"  set t_kd=[B
+"  set t_kr=[C
+"  set t_kl=[D
+"endif
 
 set langmenu=en_US.UTF-8
 set virtualedit=block
