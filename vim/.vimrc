@@ -108,6 +108,12 @@ nnoremap <Leader>t gt
 "nnoremap <CR> :Unite buffer file tab<CR>
 nnoremap <CR> :CtrlPBuff<CR>
 
+" NerdTree
+silent! nmap <F4> :NERDTreeToggle<CR>
+silent! map <F3> :NERDTreeFind<CR>
+let g:NERDTreeMapActivateNode="<F3>"
+let g:NERDTreeMapPreview="<F4>"
+
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
@@ -116,11 +122,12 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = 'find %s -type f'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-if executable("ag")
+if executable("rg")
+    set grepprg=rg\ --color=never
     if executable("tr") && !empty($CYGWIN)
-        let g:ctrlp_user_command = 'ag -l --nocolor -g "" $(cygpath -w %s) | tr -d "\r"'
+        let g:ctrlp_user_command = 'rg $(cygpath -w %s) --files --color=never --glob ""  | tr -d "\r"'
     else
-        let g:ctrlp_user_command = 'ag --hidden -l --nocolor -g "" %s'
+        let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
     endif
     let g:ctrlp_use_caching = 0
 endif
