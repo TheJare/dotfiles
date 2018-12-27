@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-	"editor.fontFamily": "Hack",
+	"editor.fontFamily": "Source Code Pro",
 	"editor.fontSize": 13,
 	"editor.wordWrap": "on",
 	"editor.minimap.enabled": true,
@@ -24,19 +24,16 @@
 		"**/bower_components": true
 	},
 	"terminal.integrated.shell.windows": "C:\\WINDOWS\\Sysnative\\cmd.exe",
-	"terminal.integrated.fontSize": 12,
 	"files.eol": "\n",
 	"workbench.colorTheme": "Monokai",
 	"workbench.iconTheme": "vs-seti",
 	"[go]": {
 		"editor.formatOnSave": true
 	},
-	"rust.showOutput": false,
+	"docker.showExplorer": false,
 	"C_Cpp.intelliSenseEngine": "Default",
 	"workbench.editor.closeOnFileDelete": false,
-	"search.useIgnoreFilesByDefault": true,
 	"workbench.editor.revealIfOpen": true,
-
 	"code-runner.executorMap": {
 		"javascript": "node",
 		"java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
@@ -78,5 +75,111 @@
 			"user.email": "jare@iguanademos.com",
 			"user.name": "Javier Arevalo"
 		}
-	]
+	],
+	"workbench.startupEditor": "newUntitledFile",
+	"git.ignoreMissingGitWarning": true,
+	"rust-client.channel": "stable",
+	"cmake-tools-helper.cmake_download_path": "C:\\Users\\Gamera\\.vscode\\extensions\\maddouri.cmake-tools-helper-0.1.1\\cmake_download",
+	"vim.leader": "<Space>",
+	"vim.statusBarColorControl": true,
+	"vim.useSystemClipboard": true,
+	"vim.whichwrap": " h,l,<,>,[,]",
+	"workbench.colorCustomizations": {
+		"statusBar.background": "#005f5f",
+		"statusBar.noFolderBackground": "#005f5f",
+		"statusBar.debuggingBackground": "#005f5f"
+	},
+	"vim.easymotion": true,
+	"vim.insertModeKeyBindings": [
+		{
+			"before": [
+				"j",
+				"j"
+			],
+			"after": [
+				"<Esc>"
+			]
+		}
+	],
+	"vim.handleKeys": {
+		"<C-f>": true
+	},
+	"vim.normalModeKeyBindings": [
+		{
+			"before": ["<leader>", "p"],
+			"after": ["\"", "+", "g", "p"]
+		},
+		{
+			"before": ["<leader>", "P"],
+			"after": ["\"", "+", "g", "P"]
+		},
+		{
+			"before": ["<leader>", "Y"],
+			"after": ["\"", "+", "Y"]
+		},
+		{
+			"before": ["<leader>", "D"],
+			"after": ["\"", "+", "D"]
+		}
+	],
+	"vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "m"],
+            "commands": [
+                "bookmarks.toggle"
+            ]
+        },
+        {
+            "before": ["<leader>", "b"],
+            "commands": [
+                "bookmarks.list"
+            ]
+		},
+		{
+            "before": ["Z", "Z"],
+            "commands": [
+                ":wq"
+            ]
+		},
+		{
+            "before":["<C-n>"],
+            "commands": [
+                ":nohl",
+            ]
+        },
+        {
+            "before": ["leader", "w"],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        }		
+	],
+	"vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+		},
+		{
+			"before": ["<leader>", "y"],
+			"after": ["\"", "+", "y"]
+		},
+		{
+			"before": ["<leader>", "d"],
+			"after": ["\"", "+", "d"]
+		}
+    ],
+	"vim.disableExtension": false,
+	"terminal.integrated.fontFamily": "DejaVu Sans Mono for Powerline",
 }
