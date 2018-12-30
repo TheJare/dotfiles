@@ -7,16 +7,17 @@ set hidden
 "   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   then start vim and run :PluginInstall command
 filetype off
-let iCanHazVundle=1
 
-let s:bundlesDir=s:vimrcBase . "/bundles"
+let s:vimrcBase=expand("<sfile>:h")
+let iCanHazVundle=1
+let s:bundlesDir=s:vimrcBase . "/.vim/bundles"
 let s:vundleBase=s:bundlesDir . "/Vundle.vim"
 let vundle_readme=expand(s:vundleBase . '/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle.."
   echo ""
-  silent !mkdir -p s:bundlesDir
-  silent !git clone https://github.com/VundleVim/Vundle.vim.git s:vundleBase
+  silent execute("!mkdir -p " . s:bundlesDir)
+  silent execute("!git clone https://github.com/VundleVim/Vundle.vim.git " . s:vundleBase)
   let iCanHazVundle=0
 endif
 
@@ -28,11 +29,6 @@ endif
 
 call vundle#begin(s:bundlesDir)
 Plugin 'VundleVim/Vundle.vim'
-if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :PluginInstall
-endif
 
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'sickill/vim-monokai'
@@ -53,6 +49,11 @@ Plugin 'sheerun/vim-polyglot'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :PluginInstall
+endif
 filetype plugin indent on
 
 " ------------------
