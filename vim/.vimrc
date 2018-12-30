@@ -7,9 +7,32 @@ set hidden
 "   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   then start vim and run :PluginInstall command
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+let iCanHazVundle=1
+
+let s:bundlesDir=s:vimrcBase . "/bundles"
+let s:vundleBase=s:bundlesDir . "/Vundle.vim"
+let vundle_readme=expand(s:vundleBase . '/README.md')
+if !filereadable(vundle_readme)
+  echo "Installing Vundle.."
+  echo ""
+  silent !mkdir -p s:bundlesDir
+  silent !git clone https://github.com/VundleVim/Vundle.vim.git s:vundleBase
+  let iCanHazVundle=0
+endif
+
+if empty(&rtp)
+  let &rtp=s:vundleBase
+else
+  let &rtp=&rtp.','.s:vundleBase
+endif
+
+call vundle#begin(s:bundlesDir)
 Plugin 'VundleVim/Vundle.vim'
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :PluginInstall
+endif
 
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'sickill/vim-monokai'
@@ -116,6 +139,9 @@ nnoremap <Leader>t gt
 " User Enter to open Unite
 "nnoremap <CR> :Unite buffer file tab<CR>
 nnoremap <CR> :CtrlPBuff<CR>
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
 
 " NerdTree
 silent! nmap <F4> :NERDTreeToggle<CR>
