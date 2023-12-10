@@ -27,7 +27,8 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 
-keymap("n", "<Leader>e", ":Lex 15<CR>", eopts({ desc = "Open Explorer" }))
+-- keymap("n", "<Leader>e", ":Lex 15<CR>", eopts({ desc = "Open Explorer" }))
+keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", eopts({ desc = "Open Explorer" }))
 keymap("n", "<C-p>", ":Telescope find_files<CR>", eopts({ desc = "Telescope find files" }))
 keymap("n", "<Leader>p", ":Telescope<CR>", eopts({ desc = "Telescope main menu" }))
 
